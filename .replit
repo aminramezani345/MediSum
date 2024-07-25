@@ -2,7 +2,11 @@ run = "python app.py"
 modules = ["python-3.10"]
 [nix]
 channel = "stable-24_05"
+[packages]
 
+torch = "latest"
+transformers = "latest"
+flask = "latest"
 [deployment]
 run = ["sh", "-c", "python app.py"]
 
