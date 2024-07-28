@@ -28,7 +28,7 @@ def medicalnotes():
         else:
             search_results = "The term 'cardio' was not found in the text."
 
-    return render_template("MediSumHome_1.html",
+    return render_template("MediSumHome_2.html",
                            internal_medicine=internal_medicine,
                            primary_care=primary_care,
                            internal_medicine_comments=internal_medicine_comments,
