@@ -35,12 +35,6 @@ def medicalnotes():
                            primary_care_comments=primary_care_comments,
                            search_results=search_results)
 
-def open_browser():
-    time.sleep(2)  # Delay to ensure the server starts
-    webbrowser.open_new("http://127.0.0.1:5000/")
-
 if __name__ == "__main__":
-    # Get the port from the environment variable
     port = int(os.environ.get("PORT", 5000))
-    Timer(1, open_browser).start()  # Open the browser after 1 second
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port)
