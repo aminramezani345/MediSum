@@ -7,14 +7,11 @@ from transformers import pipeline, AutoModelForSeq2SeqLM, AutoTokenizer
 
 app = Flask(__name__)
 
-# Initialize the summarization pipeline with an instruct model
-model_name = r"C:\Users\u249391\Downloads\MediSum-main\Falcon"  # Update this path if needed
+# Initialize the summarization pipeline with an instruct model from the internet
+model_name = "sshleifer/distilbart-cnn-12-6"  # Replace with your model name
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
-
-
-
 
 @app.route("/", methods=['GET', 'POST'])
 def medicalnotes():
