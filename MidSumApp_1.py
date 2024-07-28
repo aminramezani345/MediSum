@@ -35,7 +35,7 @@ def medicalnotes():
                                      min_length=30,
                                      do_sample=False)[0]['summary_text']
 
-    return render_template("MediSumHome_1.html",
+    return render_template("/template/MediSumHome_1.html",
                            internal_medicine=internal_medicine,
                            primary_care=primary_care,
                            internal_medicine_comments=internal_medicine_comments,
