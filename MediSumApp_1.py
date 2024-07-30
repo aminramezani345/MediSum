@@ -9,7 +9,7 @@ import threading
 app = Flask(__name__)
 
 # Initialize the summarization pipeline with an instruct model
-model_name = r"C:\Users\u249391\Downloads\MediSum-main\Falcon"  # Update this path if needed
+model_name = "sshleifer/distilbart-cnn-6-6"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
