@@ -4,11 +4,12 @@ import time
 from threading import Timer
 from flask import Flask, render_template, request
 from transformers import pipeline, AutoModelForSeq2SeqLM, AutoTokenizer
+import threading
 
 app = Flask(__name__)
 
-# Initialize the summarization pipeline with an instruct model from the internet
-model_name = "sshleifer/distilbart-cnn-12-6"  # Replace with your model name
+# Initialize the summarization pipeline with an instruct model
+model_name = r"C:\Users\u249391\Downloads\MediSum-main\Falcon"  # Update this path if needed
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
@@ -35,7 +36,7 @@ def medicalnotes():
                                      min_length=30,
                                      do_sample=False)[0]['summary_text']
 
-    return render_template("/templates/MediSumHome_1.html",
+    return render_template("MediSumHome_1.html",
                            internal_medicine=internal_medicine,
                            primary_care=primary_care,
                            internal_medicine_comments=internal_medicine_comments,
@@ -47,7 +48,7 @@ def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000/")
 
 if __name__ == "__main__":
-    # Get the port from the environment variable
-    port = int(os.environ.get("PORT", 5000))
-    Timer(1, open_browser).start()  # Open the browser after 1 second
-    app.run(host="0.0.0.0", port=port, debug=True)
+    port = 5000
+    url = f"http://127.0.0.1:{port}"
+    threading.Timer(1.25, lambda: webbrowser.open(url)).start()
+    app.run(port=port, debug=False)
